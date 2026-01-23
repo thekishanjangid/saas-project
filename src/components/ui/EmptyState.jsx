@@ -3,7 +3,7 @@ import { Inbox } from 'lucide-react';
 import { cn } from '../../utils/cn';
 
 const EmptyState = ({ 
-  title = "No items found", 
+  title = "Nothing here yet", 
   description, 
   icon: Icon = Inbox, 
   actionLabel, 

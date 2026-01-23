@@ -1,29 +1,35 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, Globe } from "lucide-react";
 
-export default function MarketingNavbar() {
+// Static data moved outside to prevent re-creation
+const NAV_LINKS = [
+  { name: "Features", href: "/features" },
+  { name: "Solutions", href: "/solutions" },
+  { name: "AI", href: "/ai" },
+  { name: "Resources", href: "/resources" },
+  { name: "Pricing", href: "/pricing" },
+];
+
+const MarketingNavbar = memo(function MarketingNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       // Toggles state when user scrolls down more than 20px
-      setIsScrolled(window.scrollY > 20);
+      // React automatically batches updates, so this is efficient
+      const shouldBeScrolled = window.scrollY > 20;
+      if (isScrolled !== shouldBeScrolled) {
+        setIsScrolled(shouldBeScrolled);
+      }
     };
 
+    // Passive listener for better scroll performance
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const navLinks = [
-    { name: "Features", href: "/features" },
-    { name: "Solutions", href: "/solutions" },
-    { name: "AI", href: "/ai" },
-    { name: "Resources", href: "/resources" },
-    { name: "Pricing", href: "/pricing" },
-  ];
+  }, [isScrolled]);
 
   return (
     <motion.nav
@@ -40,20 +46,20 @@ export default function MarketingNavbar() {
         {/* Left: Logo */}
         <Link to="/" className="flex items-center gap-2 group">
            <div className="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-purple-500/20 group-hover:shadow-purple-500/40 transition-shadow">
-             <span className="text-xl font-bold">D</span>
+             <span className="text-xl font-bold">L</span>
            </div>
            <span className={`text-xl font-bold tracking-tight transition-colors ${isScrolled ? "text-slate-900 dark:text-white" : "text-slate-900 dark:text-white"}`}>
-             DocModel
+             Leedsphere
            </span>
         </Link>
 
         {/* Center: Desktop Nav */}
         <div className="hidden lg:flex items-center gap-8">
-           {navLinks.map((link) => (
+           {NAV_LINKS.map((link) => (
              <Link 
                key={link.name} 
                to={link.href}
-               className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors relative group"
+               className="text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-purple-700 dark:hover:text-purple-300 transition-colors relative group"
              >
                {link.name}
                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-600 transition-all duration-300 group-hover:w-full opacity-0 group-hover:opacity-100"></span>
@@ -118,7 +124,7 @@ export default function MarketingNavbar() {
           >
              <div className="flex flex-col p-6 gap-6">
                 <div className="flex flex-col gap-4">
-                  {navLinks.map((link) => (
+                  {NAV_LINKS.map((link) => (
                     <Link 
                       key={link.name} 
                       to={link.href}
@@ -142,4 +148,6 @@ export default function MarketingNavbar() {
       </AnimatePresence>
     </motion.nav>
   );
-}
+});
+
+export default MarketingNavbar;

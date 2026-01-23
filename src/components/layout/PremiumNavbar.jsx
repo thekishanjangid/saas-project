@@ -28,9 +28,9 @@ export default function PremiumNavbar() {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 font-bold text-2xl text-slate-900 dark:text-white">
            <div className="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center text-white">
-             <span className="text-xl">D</span>
+             <span className="text-xl">L</span>
            </div>
-           DocModel
+           Leedsphere
         </Link>
 
         {/* Desktop Menu */}

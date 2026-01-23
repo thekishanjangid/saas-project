@@ -1,14 +1,15 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, memo, useCallback } from "react";
 import { motion, AnimatePresence, useInView, useReducedMotion } from "framer-motion";
-import { Check, Search, Shield, BarChart3, History, Globe, Layers, Zap } from "lucide-react";
+import { Check, Search, Shield, BarChart3, History, Globe, Layers, Zap, Hash, MessageSquare, FileText, Users, Clock, Paperclip, MoreHorizontal, Video } from "lucide-react";
 import RevealSection from "./RevealSection";
 
 const FEATURES_DATA = [
   {
-    id: "knowledge",
-    title: "Centralized Knowledge",
-    icon: <Layers className="w-5 h-5" />,
-    description: "Organize everything in one place.",
+    id: "channels",
+    title: "Channels",
+    shortDesc: "Create dedicated spaces for every project, team, or topic to keep work organized.",
+    icon: <Hash className="w-5 h-5" />,
+    description: "Channels keep conversations organized.",
     theme: {
       activeBg: "bg-indigo-50/50 dark:bg-indigo-900/10",
       activeBorder: "border-indigo-200 dark:border-indigo-800/50",
@@ -18,43 +19,62 @@ const FEATURES_DATA = [
       titleColor: "text-indigo-900 dark:text-indigo-100"
     },
     windowContent: (
-      <div className="flex flex-col gap-3">
-        <div className="flex items-center justify-between p-3 rounded-lg bg-white shadow-sm border border-indigo-100 dark:bg-slate-800 dark:border-indigo-900/30">
-          <div className="flex items-center gap-3">
-             <div className="w-8 h-8 rounded bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center text-indigo-600">
-               <Layers className="w-4 h-4" />
-             </div>
-             <div>
-               <div className="h-2 w-24 bg-slate-200 dark:bg-slate-700 rounded mb-1"></div>
-               <div className="h-1.5 w-16 bg-slate-100 dark:bg-slate-800 rounded"></div>
-             </div>
+      <div className="flex flex-col gap-5">
+        <div className="flex items-center justify-between pb-3 border-b border-indigo-100 dark:border-indigo-900/30">
+          <div className="flex items-center gap-2">
+            <Hash className="w-4 h-4 text-indigo-500" />
+            <span className="text-sm font-bold text-slate-800 dark:text-slate-200">marketing-launch</span>
           </div>
-          <div className="px-2 py-1 rounded text-[10px] bg-indigo-100 text-indigo-700 font-medium">Published</div>
-        </div>
-        <div className="flex items-center justify-between p-3 rounded-lg bg-white/50 border border-slate-100 dark:bg-slate-800/50 dark:border-slate-700/50">
-          <div className="flex items-center gap-3">
-             <div className="w-8 h-8 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500">
-               <Globe className="w-4 h-4" />
-             </div>
-             <div>
-               <div className="h-2 w-20 bg-slate-200 dark:bg-slate-700 rounded mb-1"></div>
-               <div className="h-1.5 w-12 bg-slate-100 dark:bg-slate-800 rounded"></div>
-             </div>
+          <div className="flex -space-x-1.5">
+             {[1,2,3].map(i => <div key={i} className="w-5 h-5 rounded-full bg-slate-200 border border-white dark:border-slate-800" />)}
           </div>
-          <div className="px-2 py-1 rounded text-[10px] bg-slate-100 text-slate-500 font-medium">Draft</div>
         </div>
-        <div className="mt-2 space-y-2 pl-4 border-l-2 border-indigo-100 dark:border-indigo-900/30">
-           <div className="h-1.5 w-3/4 bg-indigo-50 dark:bg-slate-800 rounded"></div>
-           <div className="h-1.5 w-1/2 bg-indigo-50 dark:bg-slate-800 rounded"></div>
+        
+        <div className="space-y-4">
+           {/* Message 1 */}
+           <div className="flex gap-3">
+             <div className="w-8 h-8 rounded bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center text-xs font-bold text-indigo-600 shrink-0">SM</div>
+             <div className="space-y-1.5">
+               <div className="flex items-baseline gap-2">
+                 <span className="text-xs font-bold text-slate-800 dark:text-white">Sarah Miller</span>
+                 <span className="text-[10px] text-slate-400">10:42 AM</span>
+               </div>
+               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                 Here are the final assets for the Q4 campaign. Can everyone review before EOD?
+               </p>
+               <div className="flex items-center gap-2 p-2 rounded border border-slate-200 bg-white dark:bg-slate-800 dark:border-slate-700 w-fit">
+                  <div className="p-1.5 bg-red-50 text-red-500 rounded"><FileText className="w-3 h-3" /></div>
+                  <div className="text-[10px]">
+                    <div className="font-bold text-slate-700 dark:text-slate-200">Campaign_Assets_Final.zip</div>
+                    <div className="text-slate-400">14 MB</div>
+                  </div>
+               </div>
+             </div>
+           </div>
+
+           {/* Message 2 */}
+           <div className="flex gap-3">
+             <div className="w-8 h-8 rounded bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-500 shrink-0">JD</div>
+             <div className="space-y-1">
+               <div className="flex items-baseline gap-2">
+                 <span className="text-xs font-bold text-slate-800 dark:text-white">John Davis</span>
+                 <span className="text-[10px] text-slate-400">10:45 AM</span>
+               </div>
+               <p className="text-xs text-slate-600 dark:text-slate-300">
+                 Looks great Sarah! I'll pass this to the dev team. 🚀
+               </p>
+             </div>
+           </div>
         </div>
       </div>
     )
   },
   {
-    id: "ai",
-    title: "AI Search",
-    icon: <Zap className="w-5 h-5" />,
-    description: "Instant answers for your team.",
+    id: "messages",
+    title: "Messages",
+    shortDesc: "Reach teammates instantly with direct messages and quick video huddles.",
+    icon: <MessageSquare className="w-5 h-5" />,
+    description: "Talk to your team in real time.",
     theme: {
       activeBg: "bg-violet-50/50 dark:bg-violet-900/10",
       activeBorder: "border-violet-200 dark:border-violet-800/50",
@@ -64,31 +84,52 @@ const FEATURES_DATA = [
       titleColor: "text-violet-900 dark:text-violet-100"
     },
     windowContent: (
-      <div className="flex flex-col gap-4">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-violet-500" />
-          <div className="w-full h-10 pl-10 pr-4 rounded-lg border border-violet-200 bg-violet-50/50 dark:border-violet-800 dark:bg-violet-900/10 flex items-center text-sm text-violet-700 dark:text-violet-300">
-            How do I reset my API key?
-          </div>
-        </div>
-        <div className="p-4 rounded-lg bg-white border border-violet-100 shadow-sm dark:bg-slate-800 dark:border-slate-700">
-           <div className="flex items-center gap-2 mb-2 text-xs font-semibold text-violet-600 dark:text-violet-400 uppercase tracking-wider">
-             <Zap className="w-3 h-3" /> AI Answer
-           </div>
-           <div className="space-y-2">
-             <div className="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded"></div>
-             <div className="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded"></div>
-             <div className="h-2 w-2/3 bg-slate-200 dark:bg-slate-700 rounded"></div>
-           </div>
-        </div>
+      <div className="flex flex-col gap-5">
+         <div className="flex items-center justify-between pb-3 border-b border-violet-100 dark:border-violet-900/30">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-green-500"></div>
+              <span className="text-sm font-bold text-slate-800 dark:text-slate-200">Alex Chen (Product)</span>
+            </div>
+            <Video className="w-4 h-4 text-violet-500" />
+         </div>
+         
+         <div className="space-y-4">
+            <div className="flex items-start gap-3">
+               <div className="w-8 h-8 rounded bg-violet-100 dark:bg-violet-900/50 flex items-center justify-center text-xs font-bold text-violet-600 shrink-0">AC</div>
+               <div className="p-3 rounded-2xl rounded-tl-sm bg-white border border-slate-200 shadow-sm dark:bg-slate-800 dark:border-slate-700">
+                  <p className="text-xs text-slate-700 dark:text-slate-300">Hey! Do you have 5 mins to sync on the roadmap?</p>
+               </div>
+            </div>
+
+            <div className="flex items-start gap-3 flex-row-reverse">
+               <div className="w-8 h-8 rounded bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-500 shrink-0">You</div>
+               <div className="p-3 rounded-2xl rounded-tr-sm bg-violet-50 border border-violet-100 dark:bg-violet-900/20 dark:border-violet-800/50">
+                  <p className="text-xs text-slate-700 dark:text-slate-300">Sure thing! Jumping in now.</p>
+               </div>
+            </div>
+
+            <div className="flex items-center justify-center py-2">
+               <span className="text-[10px] text-slate-400 bg-slate-50 dark:bg-slate-800 px-3 py-1 rounded-full border border-slate-100 dark:border-slate-700">
+                 Call ended • 14m 20s
+               </span>
+            </div>
+            
+            <div className="flex items-start gap-3">
+               <div className="w-8 h-8 rounded bg-violet-100 dark:bg-violet-900/50 flex items-center justify-center text-xs font-bold text-violet-600 shrink-0">AC</div>
+               <div className="p-3 rounded-2xl rounded-tl-sm bg-white border border-slate-200 shadow-sm dark:bg-slate-800 dark:border-slate-700">
+                  <p className="text-xs text-slate-700 dark:text-slate-300">Thanks for the quick sync!</p>
+               </div>
+            </div>
+         </div>
       </div>
     )
   },
   {
-    id: "version",
-    title: "Version Control",
-    icon: <History className="w-5 h-5" />,
-    description: "Track every change.",
+    id: "files",
+    title: "File Sharing",
+    shortDesc: "Share, preview, and collaborate on files without leaving your conversation.",
+    icon: <FileText className="w-5 h-5" />,
+    description: "Share files where work happens.",
     theme: {
       activeBg: "bg-blue-50/50 dark:bg-blue-900/10",
       activeBorder: "border-blue-200 dark:border-blue-800/50",
@@ -98,41 +139,50 @@ const FEATURES_DATA = [
       titleColor: "text-blue-900 dark:text-blue-100"
     },
     windowContent: (
-      <div className="space-y-3">
-         <div className="flex items-start gap-3">
-            <div className="flex flex-col items-center gap-1">
-               <div className="w-2.5 h-2.5 rounded-full bg-blue-500 ring-4 ring-blue-100 dark:ring-blue-900/30"></div>
-               <div className="w-0.5 h-full bg-slate-200 dark:bg-slate-700 min-h-[40px]"></div>
-            </div>
-            <div className="flex-1 pb-4">
-               <div className="flex items-center justify-between mb-1">
-                 <span className="text-sm font-semibold text-slate-800 dark:text-slate-200">v2.4.0 Deployment</span>
-                 <span className="text-xs text-slate-400">Now</span>
-               </div>
-               <div className="text-xs text-blue-600 bg-blue-50 dark:bg-blue-900/20 p-2 rounded border border-blue-100 dark:border-blue-800/30">
-                  Updated API rate limits documentation
-               </div>
+      <div className="space-y-4">
+         <div className="flex items-center justify-between pb-3 border-b border-blue-100 dark:border-blue-900/30">
+            <span className="text-sm font-bold text-slate-800 dark:text-slate-200">Recent Files</span>
+            <div className="flex gap-2">
+                <span className="text-[10px] text-blue-600 bg-blue-50 dark:bg-blue-900/30 px-2 py-0.5 rounded font-medium">Documents</span>
+                <span className="text-[10px] text-slate-500 px-2 py-0.5">Images</span>
             </div>
          </div>
-         <div className="flex items-start gap-3 opacity-60">
-            <div className="flex flex-col items-center gap-1">
-               <div className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-600"></div>
-            </div>
-            <div className="flex-1">
-               <div className="flex items-center justify-between mb-1">
-                 <span className="text-sm font-medium text-slate-700 dark:text-slate-300">v2.3.9 Hotfix</span>
-                 <span className="text-xs text-slate-400">2h ago</span>
+         
+         <div className="space-y-3">
+            {[
+              { name: "Q4_Financials.xlsx", type: "XLS", size: "2.4 MB", user: "Finance Team" },
+              { name: "Brand_Guidelines_v2.pdf", type: "PDF", size: "14 MB", user: "Design Team" }
+            ].map((file, i) => (
+              <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-white border border-slate-200 shadow-sm dark:bg-slate-800 dark:border-slate-700 group hover:border-blue-300 transition-colors">
+                 <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded bg-blue-50 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center font-bold text-[10px]">
+                       {file.type}
+                    </div>
+                    <div>
+                       <div className="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 transition-colors cursor-pointer">{file.name}</div>
+                       <div className="text-[10px] text-slate-500">Uploaded by {file.user} • {file.size}</div>
+                    </div>
+                 </div>
+                 <MoreHorizontal className="w-4 h-4 text-slate-400" />
+              </div>
+            ))}
+            
+            <div className="p-3 mt-2 rounded-lg bg-slate-50 border border-slate-100 dark:bg-slate-800/50 dark:border-slate-700 flex items-center gap-3">
+               <div className="w-full h-1 bg-slate-200 rounded-full overflow-hidden">
+                  <div className="w-2/3 h-full bg-blue-500"></div>
                </div>
+               <span className="text-[10px] text-slate-500 whitespace-nowrap">Uploading...</span>
             </div>
          </div>
       </div>
     )
   },
   {
-    id: "access",
-    title: "Access Control",
-    icon: <Shield className="w-5 h-5" />,
-    description: "Role-based permissions.",
+    id: "collaboration",
+    title: "Team Collaboration",
+    shortDesc: "Move projects forward with real-time editing, comments, and decision tracking.",
+    icon: <Users className="w-5 h-5" />,
+    description: "Collaborate without switching tools.",
     theme: {
       activeBg: "bg-teal-50/50 dark:bg-teal-900/10",
       activeBorder: "border-teal-200 dark:border-teal-800/50",
@@ -142,53 +192,45 @@ const FEATURES_DATA = [
       titleColor: "text-teal-900 dark:text-teal-100"
     },
     windowContent: (
-      <div className="flex flex-col gap-2">
-         {[
-           { name: "Sarah J.", role: "Admin", color: "bg-teal-100 text-teal-700 border-teal-200" },
-           { name: "Mike T.", role: "Editor", color: "bg-slate-100 text-slate-700 border-slate-200" },
-           { name: "Global", role: "Viewer", color: "bg-slate-50 text-slate-500 border-transparent" },
-         ].map((u, i) => (
-           <div key={i} className={`flex items-center justify-between p-2.5 rounded-lg border ${i===0 ? 'border-teal-100 bg-teal-50/30' : 'border-slate-100 bg-white'} dark:bg-slate-800 dark:border-slate-700`}>
-              <div className="flex items-center gap-3">
-                 <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700"></div>
-                 <div className="text-sm font-medium text-slate-900 dark:text-white">{u.name}</div>
-              </div>
-              <div className={`px-2 py-0.5 rounded text-[10px] font-semibold ${u.color} border opacity-90`}>
-                 {u.role}
-              </div>
-           </div>
-         ))}
-      </div>
-    )
-  },
-  {
-    id: "analytics",
-    title: "Analytics",
-    icon: <BarChart3 className="w-5 h-5" />,
-    description: "Insights that matter.",
-    theme: {
-      activeBg: "bg-purple-50/50 dark:bg-purple-900/10",
-      activeBorder: "border-purple-200 dark:border-purple-800/50",
-      activeRing: "ring-purple-100 dark:ring-purple-900/30",
-      iconBg: "bg-purple-100 dark:bg-purple-900/40",
-      iconText: "text-purple-600 dark:text-purple-300",
-      titleColor: "text-purple-900 dark:text-purple-100"
-    },
-    windowContent: (
-      <div className="space-y-4">
-         <div className="flex items-end justify-between h-24 px-2 pb-2 border-b border-slate-200 dark:border-slate-700">
-            {[40, 70, 45, 90, 60, 80, 50].map((h, i) => (
-              <div key={i} className={`w-6 rounded-t opacity-90 hover:opacity-100 transition-opacity ${i === 3 ? 'bg-purple-500' : 'bg-slate-300 dark:bg-slate-700'}`} style={{ height: `${h}%` }}></div>
-            ))}
-         </div>
-         <div className="grid grid-cols-2 gap-2">
-            <div className="p-2 rounded bg-purple-50 dark:bg-purple-900/20 border border-purple-100 dark:border-purple-900/30">
-               <div className="text-[10px] text-purple-600/70 uppercase">Views</div>
-               <div className="text-lg font-bold text-purple-700 dark:text-purple-300">12.5k</div>
+      <div className="flex flex-col gap-4">
+         <div className="p-3 bg-white border border-slate-100 dark:bg-slate-800 dark:border-slate-700 rounded-lg flex items-center justify-between shadow-sm">
+            <div className="flex items-center gap-3">
+               <div className="w-8 h-8 bg-teal-100 dark:bg-teal-900/40 rounded flex items-center justify-center text-teal-600">
+                  <Check className="w-4 h-4" />
+               </div>
+               <div>
+                  <div className="text-xs font-bold text-slate-800 dark:text-white">Website Redesign</div>
+                  <div className="text-[10px] text-slate-500">Due tomorrow • 3 tasks remaining</div>
+               </div>
             </div>
-            <div className="p-2 rounded bg-slate-50 dark:bg-slate-800/50">
-               <div className="text-[10px] text-slate-500 uppercase">Avg Time</div>
-               <div className="text-lg font-bold text-slate-800 dark:text-white">4m 12s</div>
+            <div className="flex -space-x-2">
+               {[1,2,3].map(i => <div key={i} className="w-6 h-6 rounded-full bg-slate-200 border-2 border-white dark:border-slate-800" />)}
+            </div>
+         </div>
+
+         <div className="space-y-2">
+            <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Activity</div>
+            
+            <div className="flex gap-3 text-xs">
+               <div className="w-1.5 h-1.5 rounded-full bg-teal-500 mt-1.5 shrink-0"></div>
+               <div>
+                  <span className="font-bold text-slate-700 dark:text-slate-200">Mike R.</span>
+                  <span className="text-slate-500"> moved </span>
+                  <span className="font-semibold text-slate-700 dark:text-slate-200">Homepage Hero</span>
+                  <span className="text-slate-500"> to In Progress</span>
+               </div>
+            </div>
+
+            <div className="flex gap-3 text-xs">
+               <div className="w-1.5 h-1.5 rounded-full bg-teal-500 mt-1.5 shrink-0"></div>
+               <div>
+                  <span className="font-bold text-slate-700 dark:text-slate-200">Anna K.</span>
+                  <span className="text-slate-500"> commented on </span>
+                  <span className="font-semibold text-slate-700 dark:text-slate-200">Mobile Layout</span>
+                  <div className="mt-1 p-2 bg-slate-50 dark:bg-slate-800/50 rounded text-slate-600 italic border border-slate-100 dark:border-slate-800">
+                     "We need to check this on smaller screens..."
+                  </div>
+               </div>
             </div>
          </div>
       </div>
@@ -197,8 +239,9 @@ const FEATURES_DATA = [
   {
     id: "integrations",
     title: "Integrations",
+    shortDesc: "Connect your favorite tools like GitHub, Jira, and Drive directly into your workflow.",
     icon: <Globe className="w-5 h-5" />,
-    description: "Connect your tools.",
+    description: "Bring your tools into one workspace.",
     theme: {
       activeBg: "bg-slate-50/50 dark:bg-slate-800/50",
       activeBorder: "border-slate-300 dark:border-slate-600",
@@ -208,23 +251,102 @@ const FEATURES_DATA = [
       titleColor: "text-slate-900 dark:text-white"
     },
     windowContent: (
-      <div className="grid grid-cols-2 gap-3">
-         {["Slack", "GitHub", "Jira", "Figma"].map((tool, i) => (
-           <div key={i} className="flex flex-col items-center justify-center p-3 rounded-lg border border-slate-100 bg-white hover:border-slate-300 transition-colors dark:bg-slate-800 dark:border-slate-700">
-              <div className="w-8 h-8 rounded mb-2 bg-slate-100 dark:bg-slate-700"></div>
-              <div className="text-xs font-medium text-slate-600 dark:text-slate-300">{tool}</div>
-           </div>
-         ))}
+      <div className="space-y-4">
+         <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-700">
+            <span className="text-sm font-bold text-slate-800 dark:text-white">Connected Apps</span>
+            <span className="text-[10px] bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-500">+ Connect</span>
+         </div>
+
+         <div className="grid grid-cols-1 gap-2.5">
+            {[
+              { name: "GitHub", desc: "Pull request #42 merged into main", status: "Just now", icon: "GH" },
+              { name: "Jira", desc: "Ticket LE-294 moved to QA", status: "2m ago", icon: "JR" },
+              { name: "Sentry", desc: "New issue detected in prod", status: "15m ago", icon: "SN" }
+            ].map((tool, i) => (
+               <div key={i} className="flex items-start gap-3 p-3 rounded-lg border border-slate-100 bg-white dark:bg-slate-800 dark:border-slate-700">
+                  <div className="w-8 h-8 rounded bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-[10px] font-bold text-slate-500 shrink-0">
+                     {tool.icon}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                     <div className="flex items-center justify-between">
+                        <div className="text-xs font-bold text-slate-900 dark:text-white">{tool.name}</div>
+                        <div className="text-[10px] text-slate-400">{tool.status}</div>
+                     </div>
+                     <div className="text-[10px] text-slate-500 truncate">{tool.desc}</div>
+                  </div>
+               </div>
+            ))}
+         </div>
+         
+         <div className="flex items-center justify-center pt-1">
+             <button className="text-[10px] text-slate-500 hover:text-slate-800 transition-colors">View all 42 integrations</button>
+         </div>
+      </div>
+    )
+  },
+  {
+    id: "search",
+    title: "Search & History",
+    shortDesc: "Find exactly what you need across messages, files, and people instantly.",
+    icon: <Search className="w-5 h-5" />,
+    description: "Find what you need, instantly.",
+    theme: {
+      activeBg: "bg-purple-50/50 dark:bg-purple-900/10",
+      activeBorder: "border-purple-200 dark:border-purple-800/50",
+      activeRing: "ring-purple-100 dark:ring-purple-900/30",
+      iconBg: "bg-purple-100 dark:bg-purple-900/40",
+      iconText: "text-purple-600 dark:text-purple-300",
+      titleColor: "text-purple-900 dark:text-purple-100"
+    },
+    windowContent: (
+      <div className="flex flex-col gap-4">
+         <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-purple-500" />
+            <div className="w-full py-2.5 pl-9 pr-3 rounded-lg border border-purple-200 bg-white text-xs text-slate-800 font-medium shadow-sm dark:bg-slate-900 dark:border-purple-900/30 dark:text-slate-300">
+               launch assets
+            </div>
+         </div>
+         
+         <div className="flex gap-2">
+            {["All", "Messages", "Files", "People"].map((filter, i) => (
+                <span key={i} className={`text-[10px] px-2 py-0.5 rounded-full border ${i === 0 ? "bg-purple-100 text-purple-700 border-purple-200" : "bg-white text-slate-500 border-slate-200 dark:bg-slate-800 dark:border-slate-700"}`}>
+                    {filter}
+                </span>
+            ))}
+         </div>
+         
+         <div className="space-y-2">
+            <div className="text-[10px] font-bold text-slate-400 uppercase">Top Results</div>
+            
+            <div className="p-3 rounded-lg bg-white border border-slate-100 shadow-sm dark:bg-slate-800 dark:border-slate-700">
+               <div className="flex items-center justify-between mb-1">
+                  <span className="text-xs font-bold text-slate-800 dark:text-white">#marketing</span>
+                  <span className="text-[10px] text-slate-400 px-1.5 py-0.5 bg-slate-50 rounded">Channel</span>
+               </div>
+               <p className="text-[10px] text-slate-500 line-clamp-2">
+                  ...where are the <strong className="text-purple-600 font-medium bg-purple-50 px-0.5 rounded">launch assets</strong> stored?
+               </p>
+            </div>
+            
+            <div className="p-3 rounded-lg bg-white border border-slate-100 shadow-sm dark:bg-slate-800 dark:border-slate-700 opacity-90">
+               <div className="flex items-center justify-between mb-1">
+                  <span className="text-xs font-bold text-slate-800 dark:text-white">Launch_Assets_vFinal.zip</span>
+                  <span className="text-[10px] text-slate-400 px-1.5 py-0.5 bg-slate-50 rounded">File</span>
+               </div>
+               <p className="text-[10px] text-slate-500">
+                  Uploaded by Sarah Miller • Yesterday
+               </p>
+            </div>
+         </div>
       </div>
     )
   }
 ];
 
 // --- SCROLLING WRAPPER ---
-const AutoScrollWrapper = ({ children, isEnabled = false }) => {
+const AutoScrollWrapper = memo(({ children, isEnabled = false }) => {
   const shouldReduceMotion = useReducedMotion();
 
-  // If reduced motion, show content statically without scroll
   if (shouldReduceMotion) {
     return (
       <div className="absolute inset-0 overflow-y-auto p-6">
@@ -243,9 +365,10 @@ const AutoScrollWrapper = ({ children, isEnabled = false }) => {
         transition={{
           repeat: Infinity,
           ease: "linear",
-          duration: 40, // Slower, calmer speed
+          duration: 40, 
         }}
         className="w-full"
+        style={{ willChange: "transform" }}
       >
         <div className="flex flex-col">
           <div className="p-6 pb-8 border-b border-transparent">
@@ -258,11 +381,45 @@ const AutoScrollWrapper = ({ children, isEnabled = false }) => {
       </motion.div>
     </div>
   );
-};
+});
 
+// Extracted card to prevent re-rendering all cards on hover
+const FeatureCard = memo(({ card, isActive, onMouseEnter, shouldReduceMotion }) => {
+    return (
+        <motion.div 
+        key={card.id} 
+        onMouseEnter={onMouseEnter}
+        variants={{
+            hidden: { opacity: 0, y: 10 },
+            visible: { 
+            opacity: 1, 
+            y: 0,
+            transition: { duration: 0.4, ease: "easeOut" }
+            }
+        }}
+        whileHover={!shouldReduceMotion ? { y: -2 } : {}}
+        className={`p-7 rounded-xl border transition-all duration-200 ease-out cursor-default flex flex-col items-start gap-3 shadow-sm min-h-[160px]
+            ${isActive 
+            ? `${card.theme.activeBg} ${card.theme.activeBorder} ring-1 ${card.theme.activeRing}` 
+            : "bg-white/50 border-slate-200 dark:bg-slate-900/50 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 hover:bg-white/80 dark:hover:bg-slate-800/80"
+            }`}
+        >
+            <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-xl transition-colors duration-200 ${isActive ? `${card.theme.iconBg} ${card.theme.iconText}` : "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400"}`}>
+                {card.icon}
+            </div>
+            <div>
+                <h3 className={`font-semibold text-base mb-1.5 transition-colors duration-200 ${isActive ? card.theme.titleColor : "text-slate-900 dark:text-white"}`}>
+                {card.title}
+                </h3>
+                <p className={`text-sm leading-relaxed ${isActive ? "text-slate-600 dark:text-slate-300" : "text-slate-500 dark:text-slate-500"}`}>
+                {card.shortDesc}
+                </p>
+            </div>
+        </motion.div>
+    );
+});
 
-
-export default function FeatureRow({ 
+const FeatureRow = memo(function FeatureRow({ 
   badge, 
   title, 
   description, 
@@ -286,10 +443,10 @@ export default function FeatureRow({
 
   const activeFeature = FEATURES_DATA[activeFeatureIndex];
 
-  const handleMouseEnter = (idx) => {
+  const handleMouseEnter = useCallback((idx) => {
      setActiveFeatureIndex(idx);
      setHasActivated(true);
-  };
+  }, []);
 
   return (
     <section ref={containerRef} className="py-24 overflow-hidden">
@@ -298,83 +455,82 @@ export default function FeatureRow({
           
           {/* LEFT SIDE: Feature Grid */}
           <div className="flex-1 max-w-xl">
-            <RevealSection delay={0.1}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                 {FEATURES_DATA.map((card, idx) => {
-                   const isActive = idx === activeFeatureIndex;
-                   return (
-                     <motion.div 
-                       key={card.id} 
-                       onMouseEnter={() => handleMouseEnter(idx)}
-                       whileHover={!shouldReduceMotion ? { y: -2 } : {}}
-                       transition={{ duration: 0.2, ease: "easeOut" }}
-                       className={`p-4 rounded-xl border transition-all duration-200 ease-out cursor-default flex flex-col items-start gap-2 shadow-sm
-                         ${isActive 
-                           ? `${card.theme.activeBg} ${card.theme.activeBorder} ring-1 ${card.theme.activeRing}` 
-                           : "bg-white/50 border-slate-200 dark:bg-slate-900/50 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 hover:bg-white/80 dark:hover:bg-slate-800/80"
-                         }`}
-                     >
-                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-xl transition-colors duration-200 ${isActive ? `${card.theme.iconBg} ${card.theme.iconText}` : "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400"}`}>
-                          {card.icon}
-                        </div>
-                        <div>
-                          <h3 className={`font-semibold text-sm transition-colors duration-200 ${isActive ? card.theme.titleColor : "text-slate-900 dark:text-white"}`}>
-                            {card.title}
-                          </h3>
-                        </div>
-                     </motion.div>
-                   );
-                 })}
-              </div>
-            </RevealSection>
+            <div className="flex-1 max-w-xl">
+              <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ margin: "0px 0px -200px 0px", once: true }}
+                variants={{
+                  hidden: {},
+                  visible: { 
+                    transition: { staggerChildren: 0.1 } 
+                  }
+                }}
+                className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+              >
+                 {FEATURES_DATA.map((card, idx) => (
+                    <FeatureCard 
+                        key={card.id}
+                        card={card}
+                        isActive={idx === activeFeatureIndex}
+                        onMouseEnter={() => handleMouseEnter(idx)}
+                        shouldReduceMotion={shouldReduceMotion}
+                    />
+                 ))}
+              </motion.div>
+            </div>
           </div>
 
           {/* RIGHT SIDE: Dynamic Mac Window */}
           <div className="flex-1 w-full relative">
-            <RevealSection delay={0.3}>
+            <div className="flex-1 w-full relative">
               <div className="relative rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 p-2 shadow-2xl shadow-slate-200/50 dark:shadow-black/50 overflow-hidden transition-colors duration-500">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-purple-500/10 blur-[80px] rounded-full pointer-events-none" />
-                
-                <div className="relative aspect-[4/3] bg-white dark:bg-slate-950 rounded-xl overflow-hidden border border-slate-100 dark:border-slate-800 flex flex-col">
-                     <div className="h-10 border-b border-slate-100 dark:border-slate-800 flex items-center px-4 gap-2 bg-slate-50/50 dark:bg-slate-900/50 z-20 relative">
-                        <div className="w-2.5 h-2.5 rounded-full bg-red-400/80"></div>
-                        <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/80"></div>
-                        <div className="w-2.5 h-2.5 rounded-full bg-green-400/80"></div>
-                        <div className="ml-4 px-3 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-[10px] text-slate-400 font-mono opacity-50">
-                           docmodel-app — v2.4
-                        </div>
-                     </div>
+                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-purple-500/10 blur-[80px] rounded-full pointer-events-none" />
+                 
+                 <div className="relative aspect-[4/3] bg-white dark:bg-slate-950 rounded-xl overflow-hidden border border-slate-100 dark:border-slate-800 flex flex-col">
+                      <div className="h-10 border-b border-slate-100 dark:border-slate-800 flex items-center px-4 gap-2 bg-slate-50/50 dark:bg-slate-900/50 z-20 relative">
+                         <div className="w-2.5 h-2.5 rounded-full bg-red-400/80"></div>
+                         <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/80"></div>
+                         <div className="w-2.5 h-2.5 rounded-full bg-green-400/80"></div>
+                         <div className="ml-4 px-3 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-[10px] text-slate-400 font-mono opacity-50">
+                            leedsphere — v2.4
+                         </div>
+                      </div>
 
-                     <div className="flex-1 relative overflow-hidden bg-slate-50/20 dark:bg-slate-900/20">
-                        <AnimatePresence mode="wait">
-                          <motion.div
-                            key={activeFeature.id}
-                            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 12 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: shouldReduceMotion ? 0 : -8 }}
-                            transition={{ duration: 0.35, ease: [0.2, 0.8, 0.2, 1] }}
-                            className="absolute inset-0"
-                          >
-                             <AutoScrollWrapper isEnabled={hasActivated}>
-                                 <div className="mb-6">
-                                    <h4 className={`text-lg font-bold mb-1 transition-colors duration-300 ${activeFeature.theme.titleColor}`}>{activeFeature.title}</h4>
-                                    <p className="text-sm text-slate-500 dark:text-slate-400">{activeFeature.description}</p>
-                                 </div>
-                                 <div className="relative">
-                                    {activeFeature.windowContent}
-                                 </div>
-                                 <div className="h-4"></div>
-                             </AutoScrollWrapper>
-                          </motion.div>
-                        </AnimatePresence>
-                     </div>
-                </div>
-              </div>
-            </RevealSection>
+                      <div className="flex-1 relative overflow-hidden bg-slate-50/20 dark:bg-slate-900/20">
+                         {/* Internal content transition */}
+                         <AnimatePresence mode="wait">
+                           <motion.div
+                             key={activeFeature.id}
+                             initial={{ opacity: 0, y: 10 }}
+                             animate={{ opacity: 1, y: 0 }}
+                             exit={{ opacity: 0, y: -10 }}
+                             transition={{ duration: 0.3 }}
+                             className="absolute inset-0"
+                             style={{ willChange: "opacity, transform" }}
+                           >
+                              <AutoScrollWrapper isEnabled={hasActivated}>
+                                  <div className="mb-6">
+                                     <h4 className={`text-lg font-bold mb-1 transition-colors duration-300 ${activeFeature.theme.titleColor}`}>{activeFeature.title}</h4>
+                                     <p className="text-sm text-slate-500 dark:text-slate-400">{activeFeature.description}</p>
+                                  </div>
+                                  <div className="relative">
+                                     {activeFeature.windowContent}
+                                  </div>
+                                  <div className="h-4"></div>
+                              </AutoScrollWrapper>
+                           </motion.div>
+                         </AnimatePresence>
+                      </div>
+                 </div>
+               </div>
+            </div>
           </div>
 
         </div>
       </div>
     </section>
   );
-}
+});
+
+export default FeatureRow;

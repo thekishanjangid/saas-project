@@ -1,7 +1,15 @@
 import { motion, useScroll, useTransform, useSpring, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
 
-export default function RevealSection({ children, className = "", delay = 0, effect = "reveal" }) {
+export default function RevealSection({ 
+  children, 
+  className = "", 
+  delay = 0, 
+  effect = "reveal",
+  viewport = { once: true, margin: "-10% 0px -10% 0px" }, // Default standard margin
+  variants = null, // Default standard variants
+  transition = null // Default standard transition
+}) {
   const ref = useRef(null);
   const shouldReduceMotion = useReducedMotion();
 
@@ -48,11 +56,11 @@ export default function RevealSection({ children, className = "", delay = 0, eff
   return (
     <motion.div
       ref={ref}
-      variants={standardVariants}
+      variants={variants || standardVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-      transition={{ 
+      viewport={viewport}
+      transition={transition || { 
         duration: 0.8, 
         delay: delay,
         ease: [0.22, 1, 0.36, 1] 

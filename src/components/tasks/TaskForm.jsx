@@ -69,8 +69,8 @@ const TaskForm = ({ task, onClose }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <Input
-        label="Title"
-        placeholder="e.g., Update documentation"
+        label="Channel name"
+        placeholder="e.g. #marketing"
         value={formData.title}
         onChange={(e) => setFormData({ ...formData, title: e.target.value })}
         error={errors.title}
@@ -78,10 +78,10 @@ const TaskForm = ({ task, onClose }) => {
       />
 
       <div className="space-y-2">
-        <label className="text-sm font-medium">Description</label>
+        <label className="text-sm font-medium">Topic</label>
         <textarea 
           className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-          placeholder="Add details..."
+          placeholder="What is this channel about?"
           value={formData.description}
           onChange={(e) => setFormData({ ...formData, description: e.target.value })}
           disabled={isLoading}
@@ -91,7 +91,7 @@ const TaskForm = ({ task, onClose }) => {
       <div className="grid grid-cols-2 gap-4">
         {/* Status is usually managed via workflow, but allowing edit here for now */}
         <div className="space-y-2">
-            <label className="text-sm font-medium">Status</label>
+            <label className="text-sm font-medium">Activity</label>
             <select
                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 value={formData.status}
@@ -128,8 +128,8 @@ const TaskForm = ({ task, onClose }) => {
       />
 
       <Input
-        label="Assignee"
-        placeholder="e.g., Jane Doe"
+        label="Add members"
+        placeholder="e.g. Jane Doe"
         value={formData.assignedTo}
         onChange={(e) => setFormData({ ...formData, assignedTo: e.target.value })}
         disabled={isLoading}
@@ -140,7 +140,7 @@ const TaskForm = ({ task, onClose }) => {
             Cancel
         </Button>
         <Button type="submit" isLoading={isLoading}>
-            {task ? 'Update Task' : 'Create Task'}
+            {task ? 'Save Changes' : 'Create Channel'}
         </Button>
       </div>
     </form>

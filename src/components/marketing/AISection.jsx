@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
-import { Check, ArrowRight, Zap } from "lucide-react";
+import { Check, ArrowRight, Zap, Users } from "lucide-react";
 import RevealSection from "./RevealSection";
-import AIChatMock from "./AIChatMock";
+import AIChatMock from "./AIChatMock"; // Now actually a Collaboration Mock
 
 export default function AISection() {
   const capabilities = [
-    "Instant answers from your knowledge base",
-    "Context-aware response generation",
-    "Learns from documentation updates instantly",
-    "Secure, role-based access control"
+    "Real-time team conversations in channels",
+    "Shared context across messages and files",
+    "Activity updates that keep everyone aligned",
+    "Secure collaboration with role-based access"
   ];
 
   return (
@@ -21,19 +21,19 @@ export default function AISection() {
           <div className="flex-1 max-w-xl">
              <RevealSection>
                 <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 text-xs font-semibold tracking-wider text-purple-600 dark:text-purple-400 uppercase bg-white dark:bg-purple-900/10 border border-purple-100 dark:border-purple-800/30 rounded-full shadow-sm">
-                  <Zap className="w-3.5 h-3.5 fill-purple-600 dark:fill-purple-400" />
-                  Eddy AI 2.0
+                  <Users className="w-3.5 h-3.5 fill-purple-600 dark:fill-purple-400" />
+                  Leedsphere Collaboration
                 </div>
 
                 <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6 leading-[1.1]">
-                  AI that instantly finds answers <br className="hidden md:block"/>
+                  Where conversations <br className="hidden md:block"/>
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
-                    across your docs.
+                    turn into action.
                   </span>
                 </h2>
 
                 <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
-                  Stop answering the same questions repeatedly. Eddy AI ingests your documentation and delivers accurate, sourced answers to your customers and team members in seconds.
+                  Leedsphere brings your team’s conversations, files, and decisions into one shared workspace — so work keeps moving forward, without context switching or lost messages.
                 </p>
 
                 <ul className="space-y-4 mb-10">
@@ -48,7 +48,7 @@ export default function AISection() {
                 </ul>
 
                 <button className="inline-flex items-center gap-2 text-white bg-slate-900 dark:bg-white dark:text-slate-900 px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
-                  Try Eddy AI
+                  Start collaborating
                   <ArrowRight className="w-4 h-4" />
                 </button>
              </RevealSection>

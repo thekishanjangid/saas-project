@@ -11,8 +11,8 @@ const Profile = () => {
     <div className="max-w-6xl mx-auto w-full pb-10">
       
       <div className="mb-8">
-        <h1 className="text-2xl font-bold tracking-tight">Account Settings</h1>
-        <p className="text-muted-foreground">Manage your profile, security, and session preferences.</p>
+        <h1 className="text-2xl font-bold tracking-tight">Member profile</h1>
+        <p className="text-muted-foreground">Manage your personal details.</p>
       </div>
 
       <div className="flex flex-col md:flex-row gap-8 items-start">

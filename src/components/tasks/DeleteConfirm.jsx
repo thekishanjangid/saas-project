@@ -17,8 +17,8 @@ const DeleteConfirm = ({ isOpen, onClose, task }) => {
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title="Delete Task"
-      description={`Are you sure you want to delete "${task?.title}"? This action cannot be undone.`}
+      title="Delete channel?"
+      description={`This will remove the channel "${task?.title}" and its messages.`}
       footer={
         <>
             <Button variant="outline" onClick={onClose} disabled={isLoading}>Cancel</Button>

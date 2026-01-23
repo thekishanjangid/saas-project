@@ -27,7 +27,7 @@ export default function Home() {
         {/* Footer would go here */}
         <footer className="py-12 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-center text-slate-500 text-sm">
            <div className="container mx-auto px-4">
-              © {new Date().getFullYear()} DocModel Inc. Inspired by Document360.
+              © {new Date().getFullYear()} Leedsphere Inc. All rights reserved.
            </div>
         </footer>
       </div>

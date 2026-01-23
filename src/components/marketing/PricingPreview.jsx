@@ -6,20 +6,20 @@ import { ArrowRight } from "lucide-react";
 export default function PricingPreview() {
   const plans = [
     {
-      title: "Starter",
+      title: "Free",
       price: "$0",
-      description: "Perfect for small teams getting started with structured documentation.",
-      features: ["Up to 50 articles", "1 Knowledge Base", "Basic Search", "Standard Support"],
-      ctaText: "Start Free",
+      description: "For small teams getting started with team communication.",
+      features: ["Channels and direct messages", "File sharing", "Limited message history", "Basic search"],
+      ctaText: "Get started",
       ctaLink: "/signup",
       delay: 0.1
     },
     {
-      title: "Business",
+      title: "Pro",
       price: "$99",
-      description: "For growing teams that need AI power and advanced customization.",
-      features: ["Unlimited articles", "3 Knowledge Bases", "Eddy AI Assistant", "Custom Branding", "Analytics"],
-      ctaText: "Start 14-Day Trial",
+      description: "For growing teams that need more power and history.",
+      features: ["Unlimited message history", "App integrations", "Advanced search", "Priority support", "Group calls"],
+      ctaText: "Try it free",
       ctaLink: "/signup",
       isPopular: true,
       delay: 0.2
@@ -27,9 +27,9 @@ export default function PricingPreview() {
     {
       title: "Enterprise",
       price: "Custom",
-      description: "Bank-grade security and control for large organizations.",
-      features: ["SSO & SAML 2.0", "Audit Logs", "SLA Guarantee", "Dedicated Success Manager", "Private Cloud"],
-      ctaText: "Contact Sales",
+      description: "For large organizations with security and compliance needs.",
+      features: ["Enterprise-grade security", "SSO & SAML 2.0", "Compliance & audit logs", "Dedicated support", "Custom onboarding"],
+      ctaText: "Contact sales",
       ctaLink: "/contact",
       delay: 0.3
     }
@@ -68,10 +68,10 @@ export default function PricingPreview() {
                  
                  <div className="relative z-10">
                     <h2 className="text-3xl md:text-4xl font-bold text-white dark:text-slate-900 mb-6">
-                      Start building better documentation today
+                      Start collaborating with your team today
                     </h2>
                     <p className="text-lg text-slate-300 dark:text-slate-600 mb-10 max-w-xl mx-auto">
-                      Join 10,000+ teams who trust DocModel to manage their knowledge. No credit card required.
+                      Join 10,000+ teams who use Leedsphere to communicate like pros. Easy to set up.
                     </p>
                     
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -79,14 +79,14 @@ export default function PricingPreview() {
                          to="/signup"
                          className="px-8 py-3.5 rounded-full bg-purple-600 text-white font-bold hover:bg-purple-700 transition-all shadow-lg hover:shadow-purple-500/25 hover:-translate-y-0.5 inline-flex items-center gap-2"
                        >
-                         Get Started Free
+                         Get Started
                          <ArrowRight className="w-4 h-4" />
                        </Link>
                        <Link 
                          to="/login"
                          className="px-8 py-3.5 rounded-full bg-transparent border border-white/20 dark:border-slate-300 text-white dark:text-slate-700 font-medium hover:bg-white/10 dark:hover:bg-slate-100 transition-colors"
                        >
-                         Already have an account?
+                         Already have a workspace?
                        </Link>
                     </div>
                  </div>

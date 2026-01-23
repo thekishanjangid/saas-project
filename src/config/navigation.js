@@ -10,7 +10,8 @@ import {
   Trash2,
   FileText,
   Shield,
-  Users
+  Users,
+  Hash
 } from 'lucide-react';
 
 export const navigationConfig = [
@@ -21,7 +22,7 @@ export const navigationConfig = [
     icon: Home,
     sidebarItems: [
       { id: 'overview', label: 'Overview', path: '/home', icon: Inbox },
-      { id: 'tasks', label: 'My Tasks', path: '/home/tasks', icon: FileText },
+      { id: 'tasks', label: 'Channels', path: '/home/tasks', icon: Hash },
       { id: 'recent', label: 'Recent', path: '/home/recent', icon: Clock },
       { id: 'starred', label: 'Starred', path: '/home/starred', icon: Star },
       { id: 'trash', label: 'Recycle Bin', path: '/home/trash', icon: Trash2 },
@@ -40,11 +41,11 @@ export const navigationConfig = [
   },
   {
     id: 'workflows',
-    label: 'Workflows',
+    label: 'Channels',
     path: '/workflows',
-    icon: Workflow,
+    icon: Hash,
     sidebarItems: [
-      { id: 'active', label: 'Active Workflows', path: '/workflows', icon: Workflow },
+      { id: 'active', label: 'All Channels', path: '/workflows', icon: Hash },
       { id: 'templates', label: 'Templates', path: '/workflows/templates', icon: FileText },
     ]
   },

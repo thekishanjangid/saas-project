@@ -1,4 +1,4 @@
-import { Shield, Smartphone, Globe, CloudLightning } from "lucide-react";
+import { Zap, Users, Layers, Globe } from "lucide-react";
 import RevealSection from "./RevealSection";
 
 const Card = ({ icon: Icon, title, description, delay }) => (
@@ -18,27 +18,27 @@ const Card = ({ icon: Icon, title, description, delay }) => (
 export default function FeatureGrid() {
   const features = [
     {
-      icon: Shield,
-      title: "Enterprise-Grade Security",
-      description: "SOC 2 Type II compliant with advanced role-based access control, SSO, and audit logs to keep your data safe.",
+      icon: Zap,
+      title: "Faster team communication",
+      description: "Reach the right people instantly and keep conversations moving forward without delays.",
       delay: 0.1
     },
     {
-      icon: CloudLightning,
-      title: "99.99% Uptime SLA",
-      description: "Global CDN distribution ensures your documentation loads instantly for customers, no matter where they are.",
+      icon: Users,
+      title: "Stay aligned, effortlessly",
+      description: "Everyone has the context they need — no more confusion, no more missed updates.",
       delay: 0.2
     },
     {
-      icon: Smartphone,
-      title: "Mobile Optimized",
-      description: "Your knowledge base looks perfect on any device, automatically adapting to desktop, tablet, and mobile screens.",
+      icon: Layers,
+      title: "All your work, one place",
+      description: "Bring conversations, files, and tools together so your team can focus.",
       delay: 0.3
     },
     {
       icon: Globe,
-      title: "Multi-Language Support",
-      description: "Easily translate and manage documentation in over 40 languages to support your global user base.",
+      title: "Works for teams of any size",
+      description: "From small teams to large organizations, collaboration stays simple and organized.",
       delay: 0.4
     }
   ];
@@ -49,10 +49,10 @@ export default function FeatureGrid() {
        <div className="container mx-auto px-4 mb-16 text-center max-w-3xl">
           <RevealSection>
             <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
-              Built for Scale & Security
+              Built for the way teams work
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-300">
-              Everything you need to deliver world-class documentation while adhering to strict enterprise standards.
+              Teams move faster when conversations are organized. Keep everyone in sync and focused on what matters.
             </p>
           </RevealSection>
        </div>

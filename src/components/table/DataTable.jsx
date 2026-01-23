@@ -35,7 +35,7 @@ const DataTable = ({ columns, data, loading, ...props }) => {
   if (loading) {
     return (
       <div className="w-full h-64 flex items-center justify-center border border-border rounded-lg bg-card shadow-sm">
-        <div className="text-muted-foreground animate-pulse">Loading data...</div>
+        <div className="text-muted-foreground animate-pulse">Getting things ready...</div>
       </div>
     );
   }
@@ -60,7 +60,14 @@ const DataTable = ({ columns, data, loading, ...props }) => {
   };
 
   if (!data || data.length === 0) {
-    return <EmptyState />;
+    return (
+      <EmptyState 
+        title="No channels yet"
+        description="Channels are where conversations happen. Create one to get started."
+        actionLabel="Create channel"
+        onAction={() => console.log('Create channel clicked')} // Placeholder or reuse prop if available
+      />
+    );
   }
 
   return (

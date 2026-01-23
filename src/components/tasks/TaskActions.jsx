@@ -6,7 +6,7 @@ import IconButton from '../ui/IconButton';
 const TaskActions = ({ onEdit, onDelete }) => {
   const items = [
     onEdit && { 
-      label: 'Edit Task', 
+      label: 'Edit channel', 
       icon: Edit2, 
       onClick: onEdit 
     },

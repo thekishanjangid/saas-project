@@ -6,47 +6,50 @@ export default function Footer() {
     {
       title: "Product",
       links: [
-        { name: "Knowledge Base", href: "/product/knowledge-base" },
-        { name: "API Documentation", href: "/product/api-docs" },
-        { name: "Eddy AI", href: "/product/ai" },
+        { name: "Channels", href: "/product/knowledge-base" },
+        { name: "Messaging", href: "/product/api-docs" },
+        { name: "File Sharing", href: "/product/ai" },
         { name: "Integrations", href: "/integrations" },
-        { name: "Security", href: "/security" },
-        { name: "Enterprise", href: "/enterprise" },
+        { name: "Search", href: "/security" },
+        { name: "Security", href: "/enterprise" },
       ]
     },
     {
-      title: "Solutions",
+      title: "Teams",
       links: [
-        { name: "Customer Support", href: "/solutions/support" },
-        { name: "SaaS Companies", href: "/solutions/saas" },
-        { name: "Internal Wiki", href: "/solutions/wiki" },
-        { name: "Technical Docs", href: "/solutions/technical" },
+        { name: "Product Teams", href: "/solutions/support" },
+        { name: "Engineering", href: "/solutions/saas" },
+        { name: "Support", href: "/solutions/wiki" },
+        { name: "Remote Teams", href: "/solutions/technical" },
+        { name: "Startups", href: "/solutions/startups" },
+        { name: "Enterprises", href: "/solutions/enterprise" },
       ]
     },
     {
       title: "Resources",
       links: [
-        { name: "Blog", href: "/blog" },
-        { name: "Case Studies", href: "/customers" },
-        { name: "Community", href: "/community" },
         { name: "Help Center", href: "/help" },
-        { name: "Glossary", href: "/glossary" },
+        { name: "Getting Started", href: "/start" },
+        { name: "Product Updates", href: "/blog" },
+        { name: "Guides", href: "/guides" },
+        { name: "Community", href: "/community" },
       ]
     },
     {
       title: "Company",
       links: [
-        { name: "About Us", href: "/about" },
+        { name: "About", href: "/about" },
         { name: "Careers", href: "/careers" },
-        { name: "Partners", href: "/partners" },
+        { name: "Blog", href: "/blog" },
         { name: "Contact", href: "/contact" },
-        { name: "Legal", href: "/legal" },
+        { name: "Privacy", href: "/privacy" },
+        { name: "Terms", href: "/terms" },
       ]
     }
   ];
 
   return (
-    <footer className="relative z-10 bg-slate-950/80 backdrop-blur-md text-slate-300 border-t border-slate-800/50">
+    <footer className="relative z-10 bg-slate-950/90 backdrop-blur-md text-slate-200 border-t border-slate-800/80">
       <div className="container mx-auto px-4 py-16">
         
         {/* Top Section: Logo & Links */}
@@ -55,14 +58,14 @@ export default function Footer() {
           <div className="col-span-2 lg:col-span-2 flex flex-col gap-6">
             <Link to="/" className="flex items-center gap-2">
                <div className="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center text-white">
-                 <span className="text-xl font-bold">D</span>
+                 <span className="text-xl font-bold">L</span>
                </div>
-               <span className="text-xl font-bold text-white tracking-tight">DocModel</span>
+               <span className="text-xl font-bold text-white tracking-tight">Leedsphere</span>
             </Link>
-            <p className="text-slate-400 leading-relaxed max-w-sm">
-              The AI-powered documentation platform that helps you build, manage, and scale your knowledge base with confidence. 
+            <p className="text-slate-300 leading-relaxed max-w-sm">
+              Bring your team’s conversations, files, and tools into one shared workspace. 
               <br /><br />
-              Trusted by 10,000+ teams worldwide.
+              Work together, stay aligned, and move faster.
             </p>
             <div className="flex gap-4 mt-2">
               <a href="#" className="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 hover:text-white transition-colors"><Twitter className="w-5 h-5"/></a>
@@ -79,7 +82,7 @@ export default function Footer() {
               <ul className="space-y-4">
                 {section.links.map((link) => (
                   <li key={link.name}>
-                    <Link to={link.href} className="text-sm hover:text-purple-400 transition-colors">
+                    <Link to={link.href} className="text-sm font-medium hover:text-purple-400 transition-colors text-slate-300/90">
                       {link.name}
                     </Link>
                   </li>
@@ -90,9 +93,9 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section: Copyright & Legal */}
-        <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
+        <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-400">
           <div>
-            © {new Date().getFullYear()} DocModel Inc. All rights reserved.
+            © {new Date().getFullYear()} Leedsphere Inc. Built for teams that work together.
           </div>
           <div className="flex gap-8">
             <Link to="/privacy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
