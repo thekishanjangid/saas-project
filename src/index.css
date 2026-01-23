@@ -3,6 +3,7 @@
 
 @layer base {
   :root {
+    color-scheme: dark !important;
     /* Base - Clean White */
     --background: 0 0% 100%;
     --foreground: 222 47% 11%;
@@ -74,6 +75,19 @@
   }
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    forced-color-adjust: none;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Strict Form Element Locking */
+  input, textarea, select, button {
+    color-scheme: dark !important;
+    forced-color-adjust: none !important;
+  }
+  
+  /* Placeholder contrast safety */
+  ::placeholder {
+    opacity: 1 !important;
   }
   /* Custom Scrollbar for Webkit */
   ::-webkit-scrollbar {
