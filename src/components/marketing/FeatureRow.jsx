@@ -371,10 +371,10 @@ const AutoScrollWrapper = memo(({ children, isEnabled = false }) => {
         style={{ willChange: "transform" }}
       >
         <div className="flex flex-col">
-          <div className="p-6 pb-8 border-b border-transparent">
+          <div className="p-8 pb-10 border-b border-transparent">
              {children}
           </div>
-          <div className="p-6 pb-8 border-b border-transparent">
+          <div className="p-8 pb-10 border-b border-transparent">
              {children}
           </div>
         </div>
@@ -398,20 +398,20 @@ const FeatureCard = memo(({ card, isActive, onMouseEnter, shouldReduceMotion }) 
             }
         }}
         whileHover={!shouldReduceMotion ? { y: -2 } : {}}
-        className={`p-7 rounded-xl border transition-all duration-200 ease-out cursor-default flex flex-col items-start gap-3 shadow-sm min-h-[160px]
+        className={`p-3.5 rounded-xl border transition-all duration-200 ease-out cursor-default flex flex-col items-start gap-1.5 shadow-sm min-h-[110px]
             ${isActive 
             ? `${card.theme.activeBg} ${card.theme.activeBorder} ring-1 ${card.theme.activeRing}` 
             : "bg-white/50 border-slate-200 dark:bg-slate-900/50 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 hover:bg-white/80 dark:hover:bg-slate-800/80"
             }`}
         >
-            <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-xl transition-colors duration-200 ${isActive ? `${card.theme.iconBg} ${card.theme.iconText}` : "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400"}`}>
+            <div className={`w-7 h-7 rounded-md flex items-center justify-center text-lg transition-colors duration-200 ${isActive ? `${card.theme.iconBg} ${card.theme.iconText}` : "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400"}`}>
                 {card.icon}
             </div>
             <div>
-                <h3 className={`font-semibold text-base mb-1.5 transition-colors duration-200 ${isActive ? card.theme.titleColor : "text-slate-900 dark:text-white"}`}>
+                <h3 className={`font-semibold text-sm mb-0.5 transition-colors duration-200 ${isActive ? card.theme.titleColor : "text-slate-900 dark:text-white"}`}>
                 {card.title}
                 </h3>
-                <p className={`text-sm leading-relaxed ${isActive ? "text-slate-600 dark:text-slate-300" : "text-slate-500 dark:text-slate-500"}`}>
+                <p className={`text-[11px] leading-snug ${isActive ? "text-slate-600 dark:text-slate-300" : "text-slate-500 dark:text-slate-500"}`}>
                 {card.shortDesc}
                 </p>
             </div>
@@ -454,7 +454,7 @@ const FeatureRow = memo(function FeatureRow({
         <div className={`flex flex-col lg:flex-row items-center gap-16 ${isReversed ? "lg:flex-row-reverse" : ""}`}>
           
           {/* LEFT SIDE: Feature Grid */}
-          <div className="flex-1 max-w-xl">
+          <div className="flex-1 lg:flex-[0.8] max-w-xl">
             <div className="flex-1 max-w-xl">
               <motion.div 
                 initial="hidden"
@@ -482,7 +482,7 @@ const FeatureRow = memo(function FeatureRow({
           </div>
 
           {/* RIGHT SIDE: Dynamic Mac Window */}
-          <div className="flex-1 w-full relative">
+          <div className="flex-1 lg:flex-[1.5] w-full relative">
             <div className="flex-1 w-full relative">
               <div className="relative rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 p-2 shadow-2xl shadow-slate-200/50 dark:shadow-black/50 overflow-hidden transition-colors duration-500">
                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-purple-500/10 blur-[80px] rounded-full pointer-events-none" />

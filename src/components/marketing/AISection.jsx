@@ -48,7 +48,7 @@ export default function AISection() {
                 </ul>
 
                 <button className="inline-flex items-center gap-2 text-white bg-slate-900 dark:bg-white dark:text-slate-900 px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
-                  Start collaborating
+                  Create your workspace
                   <ArrowRight className="w-4 h-4" />
                 </button>
              </RevealSection>
