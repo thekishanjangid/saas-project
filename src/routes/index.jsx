@@ -1,10 +1,11 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import React, { Suspense, lazy } from "react";
 import AppLayout from "../components/layout/AppLayout";
+import MarketingLayout from "../layouts/MarketingLayout";
 import ProtectedRoute from "../components/auth/ProtectedRoute";
 
 // Lazy Load Pages
-const Home = lazy(() => import("../pages/Home"));
+const MarketingHome = lazy(() => import("../pages/marketing/Home"));
 const Docs = lazy(() => import("../pages/Docs"));
 const Workflows = lazy(() => import("../pages/Workflows"));
 const Analytics = lazy(() => import("../pages/Analytics"));
@@ -36,7 +37,20 @@ const GenericPage = ({ title }) => (
 );
 
 export const router = createBrowserRouter([
-  // Public Routes
+  // Marketing / Public Routes
+  {
+    path: "/",
+    element: <MarketingLayout />,
+    children: [
+      {
+        index: true,
+        element: withSuspense(MarketingHome),
+      },
+      // Placeholders
+      { path: "features", element: <GenericPage title="Features" /> },
+      { path: "pricing", element: <GenericPage title="Pricing" /> },
+    ]
+  },
   {
     path: "/login",
     element: withSuspense(Login),
@@ -48,7 +62,7 @@ export const router = createBrowserRouter([
   
   // Protected Routes
   {
-    path: "/",
+    path: "/app",
     element: (
       <ProtectedRoute>
         <AppLayout />
@@ -57,8 +71,10 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to="/home" replace />,
+        element: <Navigate to="/app/docs" replace />,
       },
+      /* Home route removed as it is now the Landing Page */
+      /*
       {
         path: "home",
         children: [
@@ -69,6 +85,7 @@ export const router = createBrowserRouter([
           { path: "trash", element: <GenericPage title="Recycle Bin" /> },
         ]
       },
+      */
       {
         path: "docs",
         children: [

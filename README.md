@@ -66,7 +66,13 @@ src/
 -   `npm run preview`: Preview production build locally.
 
 ## ✅ Production Readiness
--   [x] Optimized Bundle Size
+-   [x] Optimized Bundle Size (Code-Split Marketing & App)
 -   [x] WCAG 2.1 AA Accessibility
--   [x] Typed Props (via JSDoc/Prop-types patterns implicit in code)
+-   [x] Cinematic Universe Background (Canvas + GPU Optimized)
 -   [x] Error Boundaries (Route-level)
+
+## 🌌 Cosmic Design System
+-   **Universe Background**: A custom canvas implementation featuring parallax stars, nebula glows, and constellation networks.
+-   **Performance**: Uses `requestAnimationFrame`, debounced resizing, and passive listeners to maintain 60FPS.
+-   **Lighting**: Cinematic spotlighting in Hero sections using `mix-blend-overlay` techniques.
+-   **Transitions**: Scroll-linked "Cinematic" reveal effects powered by Framer Motion.

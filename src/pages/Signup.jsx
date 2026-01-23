@@ -14,7 +14,7 @@ const Signup = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/home', { replace: true });
+      navigate('/app', { replace: true });
     }
   }, [isAuthenticated, navigate]);
 
