@@ -14,6 +14,39 @@ const Profile = lazy(() => import("../pages/Profile"));
 const Login = lazy(() => import("../pages/Login"));
 const Signup = lazy(() => import("../pages/Signup"));
 
+// Product Pages
+const ProductOverview = lazy(() => import("../pages/marketing/product/Overview"));
+const ProductChannels = lazy(() => import("../pages/marketing/product/Channels"));
+const ProductMessaging = lazy(() => import("../pages/marketing/product/Messaging"));
+const ProductFiles = lazy(() => import("../pages/marketing/product/Files"));
+const ProductIntegrations = lazy(() => import("../pages/marketing/product/Integrations"));
+const ProductSearch = lazy(() => import("../pages/marketing/product/Search"));
+const ProductSecurity = lazy(() => import("../pages/marketing/product/Security"));
+
+// Solutions Pages
+const SolutionEngineering = lazy(() => import("../pages/marketing/solutions/Engineering"));
+const SolutionSupport = lazy(() => import("../pages/marketing/solutions/Support"));
+const SolutionRemote = lazy(() => import("../pages/marketing/solutions/Remote"));
+const SolutionStartups = lazy(() => import("../pages/marketing/solutions/Startups"));
+const SolutionEnterprise = lazy(() => import("../pages/marketing/solutions/Enterprise"));
+
+// Resources Pages
+const ResourceHelp = lazy(() => import("../pages/marketing/resources/Help"));
+const ResourceStart = lazy(() => import("../pages/marketing/resources/Start"));
+const ResourceGuides = lazy(() => import("../pages/marketing/resources/Guides"));
+const ResourceCommunity = lazy(() => import("../pages/marketing/resources/Community"));
+const ResourceBlog = lazy(() => import("../pages/marketing/resources/Blog"));
+
+// Company Pages
+const CompanyAbout = lazy(() => import("../pages/marketing/company/About"));
+const CompanyCareers = lazy(() => import("../pages/marketing/company/Careers"));
+const CompanyContact = lazy(() => import("../pages/marketing/company/Contact"));
+
+// Legal Pages
+const LegalPrivacy = lazy(() => import("../pages/marketing/legal/Privacy"));
+const LegalTerms = lazy(() => import("../pages/marketing/legal/Terms"));
+const LegalSecurity = lazy(() => import("../pages/marketing/legal/SecurityPage"));
+
 // Loading Fallback
 const PageLoader = () => (
   <div className="flex h-full w-full items-center justify-center p-8">
@@ -46,7 +79,40 @@ export const router = createBrowserRouter([
         index: true,
         element: withSuspense(MarketingHome),
       },
-      // Placeholders
+      // Product
+      { path: "product/overview", element: withSuspense(ProductOverview) },
+      { path: "product/channels", element: withSuspense(ProductChannels) },
+      { path: "product/messaging", element: withSuspense(ProductMessaging) },
+      { path: "product/files", element: withSuspense(ProductFiles) },
+      { path: "product/integrations", element: withSuspense(ProductIntegrations) },
+      { path: "product/search", element: withSuspense(ProductSearch) },
+      { path: "product/security", element: withSuspense(ProductSecurity) },
+      
+      // Solutions
+      { path: "solutions/engineering", element: withSuspense(SolutionEngineering) },
+      { path: "solutions/support", element: withSuspense(SolutionSupport) },
+      { path: "solutions/remote", element: withSuspense(SolutionRemote) },
+      { path: "solutions/startups", element: withSuspense(SolutionStartups) },
+      { path: "solutions/enterprise", element: withSuspense(SolutionEnterprise) },
+
+      // Resources
+      { path: "help", element: withSuspense(ResourceHelp) },
+      { path: "start", element: withSuspense(ResourceStart) },
+      { path: "guides", element: withSuspense(ResourceGuides) },
+      { path: "community", element: withSuspense(ResourceCommunity) },
+      { path: "blog", element: withSuspense(ResourceBlog) },
+
+      // Company
+      { path: "about", element: withSuspense(CompanyAbout) },
+      { path: "careers", element: withSuspense(CompanyCareers) },
+      { path: "contact", element: withSuspense(CompanyContact) },
+
+      // Legal
+      { path: "privacy", element: withSuspense(LegalPrivacy) },
+      { path: "terms", element: withSuspense(LegalTerms) },
+      { path: "security", element: withSuspense(LegalSecurity) },
+
+      // Placeholders (kept for safety if not covered)
       { path: "features", element: <GenericPage title="Features" /> },
       { path: "pricing", element: <GenericPage title="Pricing" /> },
     ]

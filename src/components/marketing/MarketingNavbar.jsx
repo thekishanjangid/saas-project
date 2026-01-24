@@ -5,9 +5,9 @@ import { Menu, X, ChevronDown, Globe } from "lucide-react";
 
 // Static data moved outside to prevent re-creation
 const NAV_LINKS = [
-  { name: "Features", href: "/features" },
-  { name: "Solutions", href: "/solutions" },
-  { name: "AI", href: "/ai" },
+  { name: "Product", href: "/features" },
+  { name: "Teams", href: "/solutions" },
+  { name: "Integrations", href: "/ai" },
   { name: "Resources", href: "/resources" },
   { name: "Pricing", href: "/pricing" },
 ];
@@ -80,7 +80,7 @@ const MarketingNavbar = memo(function MarketingNavbar() {
            <div className="h-4 w-px bg-slate-200 dark:bg-slate-700"></div>
 
            <Link to="/login" className="text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-purple-600 transition-colors">
-             Log in
+             Login
            </Link>
            
            <Link 
@@ -98,7 +98,7 @@ const MarketingNavbar = memo(function MarketingNavbar() {
              to="/signup" 
              className="px-4 py-2 rounded-full bg-purple-600 text-white text-sm font-medium hover:bg-purple-700 transition-all shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 transform hover:-translate-y-0.5"
            >
-             Start free trial
+             Create your workspace
            </Link>
         </div>
 
@@ -137,9 +137,9 @@ const MarketingNavbar = memo(function MarketingNavbar() {
                 </div>
                 <div className="h-px bg-slate-100 dark:bg-slate-800"></div>
                 <div className="flex flex-col gap-4">
-                    <Link to="/login" className="text-base font-medium text-slate-900 dark:text-white">Log in</Link>
+                    <Link to="/login" className="text-base font-medium text-slate-900 dark:text-white">Login</Link>
                     <Link to="/signup" className="px-4 py-3 rounded-xl bg-purple-600 text-white text-base font-medium text-center shadow-lg shadow-purple-500/20">
-                      Start 14-day free trial
+                      Create your workspace
                     </Link>
                 </div>
              </div>

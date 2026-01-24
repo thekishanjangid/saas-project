@@ -6,21 +6,22 @@ export default function Footer() {
     {
       title: "Product",
       links: [
-        { name: "Channels", href: "/product/knowledge-base" },
-        { name: "Messaging", href: "/product/api-docs" },
-        { name: "File Sharing", href: "/product/ai" },
-        { name: "Integrations", href: "/integrations" },
-        { name: "Search", href: "/security" },
-        { name: "Security", href: "/enterprise" },
+        { name: "Overview", href: "/product/overview" },
+        { name: "Team Channels", href: "/product/channels" },
+        { name: "Team Messaging", href: "/product/messaging" },
+        { name: "File Sharing", href: "/product/files" },
+        { name: "Integrations", href: "/product/integrations" },
+        { name: "Workspace Search", href: "/product/search" },
+        { name: "Security", href: "/product/security" },
       ]
     },
     {
       title: "Teams",
       links: [
-        { name: "Product Teams", href: "/solutions/support" },
-        { name: "Engineering", href: "/solutions/saas" },
-        { name: "Support", href: "/solutions/wiki" },
-        { name: "Remote Teams", href: "/solutions/technical" },
+        { name: "Product Teams", href: "/solutions/engineering" },
+        { name: "Engineering", href: "/solutions/engineering" },
+        { name: "Support", href: "/solutions/support" },
+        { name: "Remote Teams", href: "/solutions/remote" },
         { name: "Startups", href: "/solutions/startups" },
         { name: "Enterprises", href: "/solutions/enterprise" },
       ]
@@ -40,10 +41,7 @@ export default function Footer() {
       links: [
         { name: "About", href: "/about" },
         { name: "Careers", href: "/careers" },
-        { name: "Blog", href: "/blog" },
         { name: "Contact", href: "/contact" },
-        { name: "Privacy", href: "/privacy" },
-        { name: "Terms", href: "/terms" },
       ]
     }
   ];
