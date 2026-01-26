@@ -1,10 +1,12 @@
 import { Outlet } from "react-router-dom";
-import UniverseBackground from "../components/marketing/UniverseBackground";
-import AtmosphericOverlay from "../components/marketing/AtmosphericOverlay";
-import MarketingNavbar from "../components/marketing/MarketingNavbar";
-import Footer from "../components/marketing/Footer"; 
+import UniverseBackground from "../marketing/components/UniverseBackground";
+import AtmosphericOverlay from "../marketing/components/AtmosphericOverlay";
+import MarketingNavbar from "../marketing/components/MarketingNavbar";
+import Footer from "../marketing/components/Footer"; 
+import { useScrollToTop } from "../shared/hooks/useScrollToTop";
 
 export default function MarketingLayout() {
+  useScrollToTop();
   return (
     <div className="relative min-h-screen flex flex-col font-sans antialiased text-slate-900 dark:text-white selection:bg-purple-100 dark:selection:bg-purple-900/30">
         

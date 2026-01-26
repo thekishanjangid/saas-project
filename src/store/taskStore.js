@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { tasks as mockTasks } from '../data/tasks';
-import { useAuthStore } from './authStore'; // Import authStore
-import { canUser } from '../utils/permissionUtils'; // Import permission util
+import { useAuthStore } from '../auth/authStore'; // Import authStore
+import { canUser } from '../shared/utils/permissionUtils'; // Import permission util
 import { PERMISSIONS } from '../config/permissionsConfig';
 
 const STORAGE_KEY = 'app_tasks';

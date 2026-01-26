@@ -1,51 +1,50 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import React, { Suspense, lazy } from "react";
-import AppLayout from "../components/layout/AppLayout";
+import AppLayout from "../layouts/AppLayout";
 import MarketingLayout from "../layouts/MarketingLayout";
-import ProtectedRoute from "../components/auth/ProtectedRoute";
+import ProtectedRoute from "../auth/ProtectedRoute";
 
 // Lazy Load Pages
-const MarketingHome = lazy(() => import("../pages/marketing/Home"));
-const Docs = lazy(() => import("../pages/Docs"));
-const Workflows = lazy(() => import("../pages/Workflows"));
-const Analytics = lazy(() => import("../pages/Analytics"));
-const Settings = lazy(() => import("../pages/Settings"));
-const Profile = lazy(() => import("../pages/Profile"));
-const Login = lazy(() => import("../pages/Login"));
-const Signup = lazy(() => import("../pages/Signup"));
+const MarketingHome = lazy(() => import("../marketing/pages/Home"));
+const Docs = lazy(() => import("../app/pages/Docs"));
+const Workflows = lazy(() => import("../app/pages/Workflows"));
+const Analytics = lazy(() => import("../app/pages/Analytics"));
+const Settings = lazy(() => import("../app/pages/Settings"));
+const Profile = lazy(() => import("../app/pages/Profile"));
+const Login = lazy(() => import("../auth/Login"));
+const Signup = lazy(() => import("../auth/Signup"));
 
 // Product Pages
-const ProductOverview = lazy(() => import("../pages/marketing/product/Overview"));
-const ProductChannels = lazy(() => import("../pages/marketing/product/Channels"));
-const ProductMessaging = lazy(() => import("../pages/marketing/product/Messaging"));
-const ProductFiles = lazy(() => import("../pages/marketing/product/Files"));
-const ProductIntegrations = lazy(() => import("../pages/marketing/product/Integrations"));
-const ProductSearch = lazy(() => import("../pages/marketing/product/Search"));
-const ProductSecurity = lazy(() => import("../pages/marketing/product/Security"));
+const ProductOverview = lazy(() => import("../marketing/pages/product/Overview"));
+const ProductChannels = lazy(() => import("../marketing/pages/product/Channels"));
+const ProductMessaging = lazy(() => import("../marketing/pages/product/Messaging"));
+const ProductFiles = lazy(() => import("../marketing/pages/product/Files"));
+const ProductIntegrations = lazy(() => import("../marketing/pages/product/Integrations"));
+const ProductSearch = lazy(() => import("../marketing/pages/product/Search"));
+const ProductSecurity = lazy(() => import("../marketing/pages/product/Security"));
 
 // Solutions Pages
-const SolutionEngineering = lazy(() => import("../pages/marketing/solutions/Engineering"));
-const SolutionSupport = lazy(() => import("../pages/marketing/solutions/Support"));
-const SolutionRemote = lazy(() => import("../pages/marketing/solutions/Remote"));
-const SolutionStartups = lazy(() => import("../pages/marketing/solutions/Startups"));
-const SolutionEnterprise = lazy(() => import("../pages/marketing/solutions/Enterprise"));
+const SolutionEngineering = lazy(() => import("../marketing/pages/solutions/Engineering"));
+const SolutionSupport = lazy(() => import("../marketing/pages/solutions/Support"));
+const SolutionRemote = lazy(() => import("../marketing/pages/solutions/Remote"));
+const SolutionStartups = lazy(() => import("../marketing/pages/solutions/Startups"));
+const SolutionEnterprise = lazy(() => import("../marketing/pages/solutions/Enterprise"));
 
 // Resources Pages
-const ResourceHelp = lazy(() => import("../pages/marketing/resources/Help"));
-const ResourceStart = lazy(() => import("../pages/marketing/resources/Start"));
-const ResourceGuides = lazy(() => import("../pages/marketing/resources/Guides"));
-const ResourceCommunity = lazy(() => import("../pages/marketing/resources/Community"));
-const ResourceBlog = lazy(() => import("../pages/marketing/resources/Blog"));
+const ResourceHelp = lazy(() => import("../marketing/pages/resources/Help"));
+const ResourceStart = lazy(() => import("../marketing/pages/resources/Start"));
+const ResourceGuides = lazy(() => import("../marketing/pages/resources/Guides"));
+const ResourceCommunity = lazy(() => import("../marketing/pages/resources/Community"));
+const ResourceBlog = lazy(() => import("../marketing/pages/resources/Blog"));
 
 // Company Pages
-const CompanyAbout = lazy(() => import("../pages/marketing/company/About"));
-const CompanyCareers = lazy(() => import("../pages/marketing/company/Careers"));
-
+const CompanyAbout = lazy(() => import("../marketing/pages/company/About"));
+const CompanyCareers = lazy(() => import("../marketing/pages/company/Careers"));
 
 // Legal Pages
-const LegalPrivacy = lazy(() => import("../pages/marketing/legal/Privacy"));
-const LegalTerms = lazy(() => import("../pages/marketing/legal/Terms"));
-const LegalSecurity = lazy(() => import("../pages/marketing/legal/SecurityPage"));
+const LegalPrivacy = lazy(() => import("../marketing/pages/legal/Privacy"));
+const LegalTerms = lazy(() => import("../marketing/pages/legal/Terms"));
+const LegalSecurity = lazy(() => import("../marketing/pages/legal/SecurityPage"));
 
 // Loading Fallback
 const PageLoader = () => (
