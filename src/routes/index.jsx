@@ -40,7 +40,7 @@ const ResourceBlog = lazy(() => import("../pages/marketing/resources/Blog"));
 // Company Pages
 const CompanyAbout = lazy(() => import("../pages/marketing/company/About"));
 const CompanyCareers = lazy(() => import("../pages/marketing/company/Careers"));
-const CompanyContact = lazy(() => import("../pages/marketing/company/Contact"));
+
 
 // Legal Pages
 const LegalPrivacy = lazy(() => import("../pages/marketing/legal/Privacy"));
@@ -105,7 +105,7 @@ export const router = createBrowserRouter([
       // Company
       { path: "about", element: withSuspense(CompanyAbout) },
       { path: "careers", element: withSuspense(CompanyCareers) },
-      { path: "contact", element: withSuspense(CompanyContact) },
+
 
       // Legal
       { path: "privacy", element: withSuspense(LegalPrivacy) },

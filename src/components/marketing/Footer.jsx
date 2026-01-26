@@ -41,7 +41,6 @@ export default function Footer() {
       links: [
         { name: "About", href: "/about" },
         { name: "Careers", href: "/careers" },
-        { name: "Contact", href: "/contact" },
       ]
     }
   ];
@@ -93,7 +92,7 @@ export default function Footer() {
         {/* Bottom Section: Copyright & Legal */}
         <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-400">
           <div>
-            © {new Date().getFullYear()} Leedsphere Inc. Built for teams that work together.
+            © {new Date().getFullYear()} Leedsphere Ltd. Built for teams that work together.
           </div>
           <div className="flex gap-8">
             <Link to="/privacy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>

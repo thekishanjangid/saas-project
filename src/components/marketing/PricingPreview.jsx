@@ -30,7 +30,7 @@ export default function PricingPreview() {
       description: "For large organizations with security and compliance needs.",
       features: ["Enterprise-grade security", "SSO & SAML 2.0", "Compliance & audit logs", "Dedicated support", "Custom onboarding"],
       ctaText: "Contact sales",
-      ctaLink: "/contact",
+      ctaLink: "mailto:sales@leedsphere.com",
       delay: 0.3
     }
   ];
