@@ -40,7 +40,6 @@ export default function Footer() {
       title: "Company",
       links: [
         { name: "About", href: "/about" },
-        { name: "Careers", href: "/careers" },
       ]
     }
   ];
