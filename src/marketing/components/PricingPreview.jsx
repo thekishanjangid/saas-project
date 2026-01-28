@@ -36,7 +36,7 @@ export default function PricingPreview() {
   ];
 
   return (
-    <section className="py-24 bg-white/40 dark:bg-slate-950/20 border-t border-slate-100/30 dark:border-slate-800/30 backdrop-blur-md">
+    <section id="pricing" className="py-24 bg-white/40 dark:bg-slate-950/20 border-t border-slate-100/30 dark:border-slate-800/30 backdrop-blur-md scroll-mt-24">
       <div className="container mx-auto px-4">
         <RevealSection effect="cinematic">
         

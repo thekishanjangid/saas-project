@@ -1,5 +1,5 @@
 import { useState, useEffect, memo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, Globe } from "lucide-react";
 
@@ -9,12 +9,45 @@ const NAV_LINKS = [
   { name: "Teams", href: "/solutions" },
   { name: "Integrations", href: "/ai" },
   { name: "Resources", href: "/resources" },
-  { name: "Pricing", href: "/pricing" },
+  { name: "Pricing", href: "/#pricing", isAnchor: true },
 ];
 
 const MarketingNavbar = memo(function MarketingNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Handle anchor link clicks (like Pricing)
+  const handleAnchorClick = (e, href) => {
+    e.preventDefault();
+    const targetId = href.replace('/#', '');
+
+    // If already on home page, just scroll
+    if (location.pathname === '/') {
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Navigate to home page with hash
+      navigate('/', { state: { scrollTo: targetId } });
+    }
+  };
+
+  // Handle scroll after navigation from another page
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      const element = document.getElementById(location.state.scrollTo);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+      // Clear the state
+      window.history.replaceState({}, document.title);
+    }
+  }, [location]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,14 +89,25 @@ const MarketingNavbar = memo(function MarketingNavbar() {
         {/* Center: Desktop Nav */}
         <div className="hidden lg:flex items-center gap-8">
            {NAV_LINKS.map((link) => (
-             <Link 
-               key={link.name} 
-               to={link.href}
-               className="text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-purple-700 dark:hover:text-purple-300 transition-colors relative group"
-             >
-               {link.name}
-               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-600 transition-all duration-300 group-hover:w-full opacity-0 group-hover:opacity-100"></span>
-             </Link>
+             link.isAnchor ? (
+               <button
+                 key={link.name}
+                 onClick={(e) => handleAnchorClick(e, link.href)}
+                 className="text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-purple-700 dark:hover:text-purple-300 transition-colors relative group"
+               >
+                 {link.name}
+                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-600 transition-all duration-300 group-hover:w-full opacity-0 group-hover:opacity-100"></span>
+               </button>
+             ) : (
+               <Link
+                 key={link.name}
+                 to={link.href}
+                 className="text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-purple-700 dark:hover:text-purple-300 transition-colors relative group"
+               >
+                 {link.name}
+                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-600 transition-all duration-300 group-hover:w-full opacity-0 group-hover:opacity-100"></span>
+               </Link>
+             )
            ))}
         </div>
 
@@ -125,14 +169,27 @@ const MarketingNavbar = memo(function MarketingNavbar() {
              <div className="flex flex-col p-6 gap-6">
                 <div className="flex flex-col gap-4">
                   {NAV_LINKS.map((link) => (
-                    <Link 
-                      key={link.name} 
-                      to={link.href}
-                      className="text-base font-medium text-slate-600 dark:text-slate-300 hover:text-purple-600"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {link.name}
-                    </Link>
+                    link.isAnchor ? (
+                      <button
+                        key={link.name}
+                        onClick={(e) => {
+                          handleAnchorClick(e, link.href);
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className="text-base font-medium text-slate-600 dark:text-slate-300 hover:text-purple-600 text-left"
+                      >
+                        {link.name}
+                      </button>
+                    ) : (
+                      <Link
+                        key={link.name}
+                        to={link.href}
+                        className="text-base font-medium text-slate-600 dark:text-slate-300 hover:text-purple-600"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {link.name}
+                      </Link>
+                    )
                   ))}
                 </div>
                 <div className="h-px bg-slate-100 dark:bg-slate-800"></div>
