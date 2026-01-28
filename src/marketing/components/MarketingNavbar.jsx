@@ -5,9 +5,9 @@ import { Menu, X, ChevronDown, Globe } from "lucide-react";
 
 // Static data moved outside to prevent re-creation
 const NAV_LINKS = [
-  { name: "Product", href: "/features" },
-  { name: "Teams", href: "/solutions" },
-  { name: "Integrations", href: "/ai" },
+  { name: "Product", href: "/product" },
+  { name: "Solutions", href: "/solutions" },
+  { name: "Integrations", href: "/integrations" },
   { name: "Resources", href: "/resources" },
   { name: "Pricing", href: "/#pricing", isAnchor: true },
 ];

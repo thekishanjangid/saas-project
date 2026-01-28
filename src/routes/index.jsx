@@ -22,6 +22,7 @@ const ProductFiles = lazy(() => import("../marketing/pages/product/Files"));
 const ProductIntegrations = lazy(() => import("../marketing/pages/product/Integrations"));
 const ProductSearch = lazy(() => import("../marketing/pages/product/Search"));
 const ProductSecurity = lazy(() => import("../marketing/pages/product/Security"));
+const ProductFeatures = lazy(() => import("../marketing/pages/product/Features"));
 
 // Solutions Pages
 const SolutionEngineering = lazy(() => import("../marketing/pages/solutions/Engineering"));
@@ -78,7 +79,8 @@ export const router = createBrowserRouter([
         index: true,
         element: withSuspense(MarketingHome),
       },
-      // Product
+      // Product (main route + sub-routes)
+      { path: "product", element: withSuspense(ProductFeatures) },
       { path: "product/overview", element: withSuspense(ProductOverview) },
       { path: "product/channels", element: withSuspense(ProductChannels) },
       { path: "product/messaging", element: withSuspense(ProductMessaging) },
@@ -86,20 +88,25 @@ export const router = createBrowserRouter([
       { path: "product/integrations", element: withSuspense(ProductIntegrations) },
       { path: "product/search", element: withSuspense(ProductSearch) },
       { path: "product/security", element: withSuspense(ProductSecurity) },
-      
-      // Solutions
+
+      // Solutions (main route + sub-routes)
+      { path: "solutions", element: withSuspense(SolutionEngineering) },
       { path: "solutions/engineering", element: withSuspense(SolutionEngineering) },
       { path: "solutions/support", element: withSuspense(SolutionSupport) },
       { path: "solutions/remote", element: withSuspense(SolutionRemote) },
       { path: "solutions/startups", element: withSuspense(SolutionStartups) },
       { path: "solutions/enterprise", element: withSuspense(SolutionEnterprise) },
 
-      // Resources
+      // Resources (main route + sub-routes)
+      { path: "resources", element: withSuspense(ResourceHelp) },
       { path: "help", element: withSuspense(ResourceHelp) },
       { path: "start", element: withSuspense(ResourceStart) },
       { path: "guides", element: withSuspense(ResourceGuides) },
       { path: "community", element: withSuspense(ResourceCommunity) },
       { path: "blog", element: withSuspense(ResourceBlog) },
+
+      // Integrations (main route)
+      { path: "integrations", element: withSuspense(ProductIntegrations) },
 
       // Company
       { path: "about", element: withSuspense(CompanyAbout) },
@@ -112,7 +119,6 @@ export const router = createBrowserRouter([
       { path: "security", element: withSuspense(LegalSecurity) },
 
       // Placeholders (kept for safety if not covered)
-      { path: "features", element: <GenericPage title="Features" /> },
       { path: "pricing", element: <GenericPage title="Pricing" /> },
     ]
   },
