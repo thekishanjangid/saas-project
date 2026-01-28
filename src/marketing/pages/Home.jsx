@@ -4,6 +4,7 @@ import FeatureGrid from "../components/FeatureGrid";
 import AISection from "../components/AISection";
 import TestimonialsSection from "../components/TestimonialsSection";
 import PricingPreview from "../components/PricingPreview";
+import DashboardShowcase from "../components/DashboardShowcase";
 
 export default function Home() {
   return (
@@ -23,6 +24,9 @@ export default function Home() {
         ]}
         align="left"
       />
+
+      {/* Dashboard Screenshots Showcase */}
+      <DashboardShowcase />
 
       {/* Feature Pillar 2: AI (Specialized Section) */}
       <AISection />
