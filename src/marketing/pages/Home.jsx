@@ -1,4 +1,3 @@
-import RevealSection from "../components/RevealSection";
 import HeroSection from "../components/HeroSection";
 import FeatureRow from "../components/FeatureRow";
 import FeatureGrid from "../components/FeatureGrid";
@@ -13,10 +12,10 @@ export default function Home() {
       <HeroSection />
 
       {/* Feature Pillar 1: Knowledge Management (Left) */}
-      <FeatureRow 
+      <FeatureRow
         badge="Centralized Knowledge"
         title="Your Single Source of Truth"
-        description="Stop searching through Slack, Email, and Google Drive. Organize all your SOPs, product guides, and technical docs in one structured, searchable portal."
+        description="Stop searching through scattered messages, emails, and cloud drives. Organize all your SOPs, product guides, and technical docs in one structured, searchable portal."
         bullets={[
           "Drag-and-drop category management",
           "Advanced version control & rollback",
